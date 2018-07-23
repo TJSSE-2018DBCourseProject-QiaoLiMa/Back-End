@@ -39,20 +39,19 @@ public enum TrainRunningSituationEnum
     {
 
         [Key]
-        
         [Column(TypeName = "VARCHAR2")]
         public string ID { get; set; }
 
         [Column(TypeName = "int")]
         [Required]
-        public TrainTypeEnum trainType { get; set; }
+        public TrainTypeEnum TrainType { get; set; }
 
         [Column(TypeName = "int")]
-        public TrainFreightTypeEnum trainFreightType { get; set; }
+        public TrainFreightTypeEnum TrainFreightType { get; set; }
 
         [Column(TypeName = "int")]
         [Required]
-        public TrainRunningSituationEnum trainRunningSituatio { get; set; }
+        public TrainRunningSituationEnum TrainRunningSituatio { get; set; }
 
     }
 }
