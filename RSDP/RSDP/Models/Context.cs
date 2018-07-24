@@ -48,8 +48,7 @@ namespace RSDP.Models
             /// 货运
             /// </summary>
             modelBuilder.Entity<Price>().Property(t => t.BasePriceOne).HasPrecision(5, 2);
-                                          
-            modelBuilder.Entity<Price>().Property(t => t.BasePriceTwo).HasPrecision(6, 2);
+            modelBuilder.Entity<Price>().Property(t => t.BasePriceTwo).HasPrecision(5, 2);
 
 
 

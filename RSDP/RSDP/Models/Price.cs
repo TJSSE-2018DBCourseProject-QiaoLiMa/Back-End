@@ -38,15 +38,15 @@ namespace RSDP.Models
 
         [Column(TypeName = "VARCHAR2")]
         public string BasePriceOneUnit { get; set; }
-
+      
         [Column(TypeName = "NUMERIC")]
-        public double BasePriceOne { get; set; }
+        public decimal BasePriceOne { get; set; }
 
         [Column(TypeName = "VARCHAR2")]
         public string BasePriceTwoUnit { get; set; }
 
         [Column(TypeName = "NUMERIC")]
-        public double BasePriceTwo { get; set; }
+        public decimal BasePriceTwo { get; set; }
        
     }
 }
