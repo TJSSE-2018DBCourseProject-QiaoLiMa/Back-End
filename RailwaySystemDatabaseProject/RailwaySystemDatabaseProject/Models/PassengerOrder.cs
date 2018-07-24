@@ -21,8 +21,8 @@ namespace RailwaySystemDatabaseProject.Models
         public string AccountID { get; set; }
 
         [ForeignKey("Passenger")]
-        [Column(TypeName = "VARCHAR2")]
-        [StringLength(30)]
+        [Column(TypeName = "CHAR")]
+        [StringLength(18)]
         public string PassengerID { get; set; }
 
 
@@ -30,7 +30,8 @@ namespace RailwaySystemDatabaseProject.Models
         [StringLength(20)]
         public string TrainNum { get; set; }
 
-        [Column(TypeName = "DATE")]
+        [Column(TypeName = "CHAR")]
+        [StringLength(10)]
         public string DepartDate { get; set; }
 
 
