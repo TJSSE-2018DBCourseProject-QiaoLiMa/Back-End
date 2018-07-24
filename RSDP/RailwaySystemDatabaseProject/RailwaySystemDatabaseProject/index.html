@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> Title </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p><input v-model="id"> </p>
+        <p><input v-model="trainType"></p>
+        <p><input v-model="trainFreightType"></p>
+        <p><input v-model="trainRunningSituation"></p>
+        <p><button @click="createNewTrain"> 点击添加 </button></p>
+        <p><button @click="count"> 点击查询 </button></p>
+
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                trainType: 0,
+                trainFreightType: 0,
+                trainRunningSituation: 0
+            },
+            methods: {
+                createNewTrain: function () {
+
+                    console.log({
+                        ID: this.id,
+                        trainType: this.trainType,
+                        trainFreightType: this.trainFreightType,
+                        trainRunningSituation: this.trainRunningSituation
+
+                    })
+                    axios.post('http://localhost:5001/train',
+                        {
+                            ID: this.id,
+                            trainType: this.trainType,
+                            trainFreightType: this.trainFreightType,
+                            trainRunningSituation: this.trainRunningSituation
+                        })
+                        .then(function (response) {
+                            console.log(response.data);
+                            alert(response.data)
+                        })
+                        .catch(function (error) {
+
+                            console.log(error);
+                        })
+
+                        .then(function () {
+                            // always executed
+
+                        });
+                },
+                count: function () {
+
+                   
+                    axios.post('http://localhost:5001/train/count')
+                        .then(function (response) {
+                            console.log(response.data);
+                            alert(response.data)
+                        })
+                        .catch(function (error) {
+
+                            console.log(error);
+                        })
+
+                        .then(function () {
+                            // always executed
+
+                        });
+                }
+
+            }
+        });
+    </script>
+
+</body>
+
+
+</html>
+
+
+
