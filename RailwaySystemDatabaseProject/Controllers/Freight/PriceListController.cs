@@ -13,9 +13,9 @@ namespace RailwaySystemDatabaseProject.Controllers
     public class PriceListController : ApiController
     {
         
-
-        [Route("index")]
         [HttpPut]
+        [Route("PriceList/index")]
+       
         public bool ChangePriceTable(Price p)//218韦
         {
 
@@ -23,12 +23,30 @@ namespace RailwaySystemDatabaseProject.Controllers
             {
                 try
                 {
-                    var pr = ctx.Price.Where(x => x.ValuationID == p.ValuationID).FirstOrDefault();
-                     pr.BasePriceOne = p.BasePriceOne;
-                     // pr.BasePriceOneUnit = p.BasePriceOneUnit;
-                    pr.BasePriceTwo = p.BasePriceTwo;
+                    //var pr = ctx.Price.Where(x => x.ValuationID == p.ValuationID).FirstOrDefault();
+                    // var pr = (from x in ctx.Price
+                    //where x.ValuationID == p.ValuationID
+                    //select x).Single();
+
+                    // pr.BasePriceOne = p.BasePriceOne;
+                    // pr.BasePriceOneUnit = p.BasePriceOneUnit;
+                    //pr.BasePriceTwo = p.BasePriceTwo;
                     //pr.BasePriceTwoUnit = p.BasePriceTwoUnit;
+                    // ctx.SaveChanges();
+
+                    Price pr = new Price()
+                    {
+                        ValuationID= p.ValuationID,
+                        BasePriceOne = p.BasePriceOne,
+                        BasePriceOneUnit = p.BasePriceOneUnit, 
+                        BasePriceTwo = p.BasePriceTwo,
+                        BasePriceTwoUnit = p.BasePriceTwoUnit
+                     };
+                    ctx.Entry<Price>(pr).State = System.Data.Entity.EntityState.Modified;
                     ctx.SaveChanges();
+
+
+                    return true;
 
                     //ctx.Train.Add(train);
                     //ctx.SaveChanges();
@@ -40,12 +58,16 @@ namespace RailwaySystemDatabaseProject.Controllers
                         foreach (var validationError in validationErrors.ValidationErrors)
                         {
                             System.Diagnostics.Debug.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                           
+
                         }
+                        
                     }
+                    return false;
                 }
                 
             }
-            return true;
+           
 
         }
 
@@ -59,9 +81,10 @@ namespace RailwaySystemDatabaseProject.Controllers
         /// ///////////////////////////////////////////////////////////////////////////////////
         /// </summary>
         /// <returns></returns>
-        //[Route("index")]
-        //[HttpGet]
 
+        [HttpGet]
+        [Route("PriceList/index")]
+        
         public IHttpActionResult GetPrice()//216
         {
             using (var ctx = new OracleDbContext())
@@ -71,7 +94,7 @@ namespace RailwaySystemDatabaseProject.Controllers
 
 
                     var P = ctx.Price.ToList();
-
+                    var s= Json<List<Price>>(P);
                     return Json<List<Price>>(P);
 
                     //ctx.Train.Add(train);
